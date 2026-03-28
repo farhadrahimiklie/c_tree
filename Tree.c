@@ -5,6 +5,9 @@
 #include <dirent.h>
 #include <sys/stat.h>
 
+#define COLOR_BLUE "\033[34m"
+#define COLOR_RESET "\033[0m"
+
 int is_directory(const char *path){
     struct stat st;
     if (stat(path, &st) != 0) return 0;
@@ -96,7 +99,7 @@ void Tree(const char *path, int level, int *is_last,
         }
 
         if (is_dir) {
-            printf("%s\n", filtered[i]);
+             printf(COLOR_BLUE "%s" COLOR_RESET "\n", filtered[i]);
             (*dir_count)++;
         } else {
             long size = get_file_size(full);
